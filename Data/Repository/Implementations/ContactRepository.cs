@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BEAgenda.Data.Repository.Interfaces;
+using BEAgenda.Entities;
+using Microsoft.EntityFrameworkCore;
 
-namespace BEAgenda.Models.Repository
+namespace BEAgenda.Data.Repository.Implementations
 {
     public class ContactRepository : IContactRepository
     {
@@ -17,8 +19,8 @@ namespace BEAgenda.Models.Repository
         }
 
         public async Task<Contact> GetContact(int id)
-        { 
-            return await _context.Contacts.FindAsync(id); 
+        {
+            return await _context.Contacts.FindAsync(id);
         }
 
         public async Task DeleteContact(Contact contact)
@@ -38,11 +40,12 @@ namespace BEAgenda.Models.Repository
         {
             var contactItem = await _context.Contacts.FirstOrDefaultAsync(x => x.id == contact.id);
 
-            if(contactItem != null)
+            if (contactItem != null)
             {
-                contactItem.name = contact.name;
-                contactItem.number = contact.number;
-                contactItem.email = contact.email;
+                contactItem.Name = contact.Name;
+                contactItem.Number = contact.Number;
+                contactItem.Email = contact.Email;
+                contactItem.Favorite = contact.Favorite;
 
                 await _context.SaveChangesAsync();
             }

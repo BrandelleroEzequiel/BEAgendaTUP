@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BEAgenda.Models.DTO;
+using BEAgenda.Entities;
 
 namespace BEAgenda.Models.Profiles
 {
