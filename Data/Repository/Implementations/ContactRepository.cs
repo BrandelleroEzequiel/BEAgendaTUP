@@ -45,7 +45,6 @@ namespace BEAgenda.Data.Repository.Implementations
                 contactItem.Name = contact.Name;
                 contactItem.Number = contact.Number;
                 contactItem.Email = contact.Email;
-                contactItem.Favorite = contact.Favorite;
 
                 await _context.SaveChangesAsync();
             }
