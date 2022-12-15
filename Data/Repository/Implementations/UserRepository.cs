@@ -1,5 +1,6 @@
 ﻿using BEAgenda.Data.Repository.Interfaces;
 using BEAgenda.Entities;
+using BEAgenda.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace BEAgenda.Data.Repository.Implementations
@@ -11,6 +12,11 @@ namespace BEAgenda.Data.Repository.Implementations
         public UserRepository(AplicationDbContext context)
         {
             _context = context;
+        }
+
+        public User? ValidateUser(AuthenticationRequestBody authRequestBody)
+        {
+            return _context.Users.FirstOrDefault(p => p.UserName == authRequestBody.UserName && p.Password == authRequestBody.Password);
         }
 
         public async Task<User> AddUser(User user)
